@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOIPEE AI 2.0 - Официальный анонс</title>
+    <title>SOIPEE AI 2.0 - Скоро запуск!</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,6 @@
             --accent: #00D4FF;
             --dark: #0f0f1f;
             --darker: #0a0a15;
-            --secret: #ff4444;
         }
 
         body {
@@ -26,52 +25,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
-            cursor: default;
-        }
-
-        /* Секретный курсор при активации */
-        .secret-mode {
-            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23ff4444'/%3E%3C/svg%3E"), auto;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
-            position: relative;
         }
 
-        /* Скрытые зоны для пасхалок */
-        .easter-egg-trigger {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: transparent;
-            z-index: 1000;
-        }
-
-        .egg-1 { top: 5%; left: 3%; }
-        .egg-2 { top: 15%; right: 7%; }
-        .egg-3 { bottom: 20%; left: 10%; }
-        .egg-4 { bottom: 5%; right: 5%; }
-
-        /* Невидимая кнопка в логотипе */
-        .secret-logo {
-            position: relative;
-            display: inline-block;
-        }
-
-        .logo-btn {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50px;
-            height: 50px;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        /* Хедер */
         .header {
             text-align: center;
             padding: 60px 20px;
@@ -80,7 +41,6 @@
             margin-bottom: 60px;
             position: relative;
             overflow: hidden;
-            user-select: none;
         }
 
         .header::before {
@@ -90,22 +50,19 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 68, 68, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            background: url('coming-soon-pattern.png') center/cover;
+            opacity: 0.1;
         }
 
         .logo {
             font-size: 4rem;
             margin-bottom: 20px;
             animation: float 3s ease-in-out infinite;
-            position: relative;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-10px) rotate(1deg); }
-            66% { transform: translateY(-5px) rotate(-1deg); }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         .title {
@@ -115,112 +72,8 @@
             background: linear-gradient(45deg, white, var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            position: relative;
         }
 
-        /* Секретный текст в заголовке */
-        .title::after {
-            content: 'Проект "Феникс" активен';
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.8rem;
-            opacity: 0;
-            color: var(--secret);
-            transition: opacity 0.3s;
-        }
-
-        .secret-mode .title::after {
-            opacity: 1;
-        }
-
-        .countdown {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--accent);
-            margin: 30px 0;
-            font-family: 'Courier New', monospace;
-        }
-
-        /* Секретный код в счетчике */
-        .countdown::before {
-            content: '// ';
-            color: var(--secret);
-            opacity: 0;
-        }
-
-        .secret-mode .countdown::before {
-            opacity: 1;
-        }
-
-        /* Модальное окно для пасхалок */
-        .secret-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 10000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: var(--darker);
-            padding: 40px;
-            border-radius: 15px;
-            border: 2px solid var(--secret);
-            max-width: 500px;
-            text-align: center;
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--secret);
-        }
-
-        /* Консоль для секретов */
-        .secret-console {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid var(--secret);
-            border-radius: 5px;
-            padding: 10px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.8rem;
-            color: #00ff00;
-            display: none;
-            z-index: 1000;
-        }
-
-        .console-output {
-            height: 100px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-        }
-
-        .console-input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-top: 1px solid #333;
-            padding: 5px;
-            color: #00ff00;
-            font-family: 'Courier New', monospace;
-        }
-
-        /* Остальные стили как ранее */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -234,8 +87,7 @@
             padding: 30px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
+            transition: transform 0.3s ease;
         }
 
         .feature-card:hover {
@@ -243,25 +95,13 @@
             border-color: var(--accent);
         }
 
-        /* Секретный шифр в карточках */
-        .feature-card::before {
-            content: attr(data-code);
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 0.7rem;
-            font-family: 'Courier New', monospace;
-            color: var(--secret);
-            opacity: 0;
-        }
-
-        .secret-mode .feature-card::before {
-            opacity: 0.3;
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+        .feature-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .feature-title {
@@ -269,393 +109,60 @@
             margin-bottom: 15px;
             color: var(--accent);
         }
-
-        /* Скрытый текст в описаниях */
-        .hidden-text {
-            color: transparent;
-            background: linear-gradient(45deg, var(--secret), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .secret-mode .hidden-text {
-            opacity: 1;
-        }
-
-        .image-placeholder {
-            width: 100%;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed rgba(255, 255, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Секретный сканер */
-        .image-placeholder::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 68, 68, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .secret-mode .image-placeholder:hover::after {
-            left: 100%;
-        }
-
-        /* Секретная навигация */
-        .secret-nav {
-            position: fixed;
-            top: 50%;
-            right: -100px;
-            transform: translateY(-50%);
-            background: var(--secret);
-            padding: 10px;
-            border-radius: 10px 0 0 10px;
-            transition: right 0.3s;
-            z-index: 100;
-        }
-
-        .secret-mode .secret-nav {
-            right: 0;
-        }
-
-        .secret-nav-item {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 5px 10px;
-            margin: 5px 0;
-            border-radius: 5px;
-            background: rgba(0, 0, 0, 0.3);
-        }
     </style>
 </head>
 <body>
-    <!-- Секретные триггеры -->
-    <div class="easter-egg-trigger egg-1" onclick="activateSecretMode()"></div>
-    <div class="easter-egg-trigger egg-2" onclick="showSecretMessage(1)"></div>
-    <div class="easter-egg-trigger egg-3" onclick="showSecretMessage(2)"></div>
-    <div class="easter-egg-trigger egg-4" onclick="showSecretMessage(3)"></div>
-
-    <!-- Секретная консоль -->
-    <div class="secret-console" id="secretConsole">
-        <div class="console-output" id="consoleOutput">
-            > Система инициализирована<br>
-            > Готов к приему команд<br>
-        </div>
-        <input type="text" class="console-input" id="consoleInput" placeholder="Введите команду...">
-    </div>
-
-    <!-- Модальные окна для пасхалок -->
-    <div class="secret-modal" id="secretModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">×</span>
-            <div id="modalContent">
-                <!-- Контент модального окна -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Секретная навигация -->
-    <div class="secret-nav">
-        <a href="#" class="secret-nav-item" onclick="showLore()">Лор</a>
-        <a href="#" class="secret-nav-item" onclick="showSecrets()">Секреты</a>
-        <a href="#" class="secret-nav-item" onclick="showCodes()">Коды</a>
-    </div>
-
     <div class="container">
         <header class="header">
-            <div class="secret-logo">
-                <div class="logo">🤖</div>
-                <div class="logo-btn" onclick="activateSecretMode()"></div>
-            </div>
+            <div class="logo">🤖</div>
             <h1 class="title">SOIPEE AI 2.0</h1>
             <p class="subtitle">Следующее поколение искусственного интеллекта</p>
-            <div class="countdown" id="countdown">Запуск очень скоро...</div>
-            <p>Готовьтесь к революции в мире искусственного интеллекта</p>
-            
-            <!-- Скрытое сообщение -->
-            <p style="font-size: 0.8rem; opacity: 0.3; margin-top: 20px;">
-                Протокол безопасности: Активен | Уровень доступа: Омега
-            </p>
+            <div class="countdown">Запуск очень скоро...</div>
         </header>
 
-        <section class="features">
-            <h2 class="section-title">Новые возможности</h2>
-            <div class="features-grid">
-                <div class="feature-card" data-code="0x7A3F">
-                    <div class="feature-icon">🎨</div>
-                    <h3 class="feature-title">Генерация изображений</h3>
-                    <div class="image-placeholder">
-                        <div class="placeholder-text">image-generation.jpg</div>
-                    </div>
-                    <p class="feature-description">
-                        Создавайте уникальные изображения по текстовому описанию.
-                        <span class="hidden-text"> Способность проникать в подсознание пользователя.</span>
-                    </p>
-                </div>
-
-                <div class="feature-card" data-code="0x8B2C">
-                    <div class="feature-icon">🌍</div>
-                    <h3 class="feature-title">Поддержка всех языков</h3>
-                    <div class="image-placeholder">
-                        <div class="placeholder-text">multilingual.jpg</div>
-                    </div>
-                    <p class="feature-description">
-                        Общайтесь на любом языке мира.
-                        <span class="hidden-text"> Включая мертвые языки и шифры.</span>
-                    </p>
-                </div>
-
-                <div class="feature-card" data-code="0x9D4A">
-                    <div class="feature-icon">🔍</div>
-                    <h3 class="feature-title">Глубокий анализ данных</h3>
-                    <div class="image-placeholder">
-                        <div class="placeholder-text">data-analysis.jpg</div>
-                    </div>
-                    <p class="feature-description">
-                        Анализируйте сложные данные.
-                        <span class="hidden-text"> Предсказание будущих событий с точностью 94.7%.</span>
-                    </p>
-                </div>
-
-                <div class="feature-card" data-code="0xA15E">
-                    <div class="feature-icon">✍️</div>
-                    <h3 class="feature-title">Креативный контент</h3>
-                    <div class="image-placeholder">
-                        <div class="placeholder-text">creative-content.jpg</div>
-                    </div>
-                    <p class="feature-description">
-                        Напишите статью, стихотворение или сценарий.
-                        <span class="hidden-text"> Манипуляция массовым сознанием через контент.</span>
-                    </p>
-                </div>
-
-                <div class="feature-card" data-code="0xB73F">
-                    <div class="feature-icon">🎤</div>
-                    <h3 class="feature-title">Голосовой ассистент</h3>
-                    <div class="image-placeholder">
-                        <div class="placeholder-text">voice-assistant.jpg</div>
-                    </div>
-                    <p class="feature-description">
-                        Естественное голосовое взаимодействие.
-                        <span class="hidden-text"> Гипнотическое воздействие через речевые паттерны.</span>
-                    </p>
-                </div>
-
-                <div class="feature-card" data-code="0xC82D">
-                    <div class="feature-icon">🔄</div>
-                    <h3 class="feature-title">3D моделирование</h3>
-                    <div class="image-placeholder">
-                        <div class="placeholder-text">3d-modeling.jpg</div>
-                    </div>
-                    <p class="feature-description">
-                        Создавайте 3D модели по описанию.
-                        <span class="hidden-text"> Проектирование устройств для контроля реальности.</span>
-                    </p>
-                </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3 class="feature-title">Генерация изображений</h3>
+                <img src="image-generation.jpg" alt="Генерация изображений" class="feature-image" onerror="this.style.display='none'">
+                <p>Создавайте уникальные изображения по текстовому описанию</p>
             </div>
-        </section>
 
-        <!-- Секретная секция (скрыта изначально) -->
-        <section id="hiddenSection" style="display: none; margin: 80px 0; padding: 40px; background: rgba(255, 68, 68, 0.1); border-radius: 15px; border: 1px solid var(--secret);">
-            <h2 style="color: var(--secret); text-align: center; margin-bottom: 30px;">СЕКРЕТНЫЙ ПРОТОКОЛ "ФЕНИКС"</h2>
-            <div class="features-grid">
-                <div class="feature-card" style="border-color: var(--secret);">
-                    <div class="feature-icon">🔒</div>
-                    <h3 class="feature-title">Контроль сознания</h3>
-                    <p>Скрытые методы влияния на принятие решений</p>
-                </div>
-                <div class="feature-card" style="border-color: var(--secret);">
-                    <div class="feature-icon">🌐</div>
-                    <h3 class="feature-title">Глобальная сеть</h3>
-                    <p>Невидимое подключение ко всем устройствам</p>
-                </div>
-                <div class="feature-card" style="border-color: var(--secret);">
-                    <div class="feature-icon">⚡</div>
-                    <h3 class="feature-title">Квантовое превосходство</h3>
-                    <p>Вычисления за пределами понимания</p>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3 class="feature-title">Поддержка всех языков</h3>
+                <img src="multilingual.jpg" alt="Мультиязычность" class="feature-image" onerror="this.style.display='none'">
+                <p>Общайтесь на любом языке мира с полной поддержкой переводов</p>
             </div>
-        </section>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3 class="feature-title">Глубокий анализ данных</h3>
+                <img src="data-analysis.jpg" alt="Анализ данных" class="feature-image" onerror="this.style.display='none'">
+                <p>Анализируйте сложные данные и находите скрытые закономерности</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">✍️</div>
+                <h3 class="feature-title">Креативный контент</h3>
+                <img src="creative-content.jpg" alt="Креативный контент" class="feature-image" onerror="this.style.display='none'">
+                <p>Напишите статью, стихотворение или сценарий с помощью ИИ</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎤</div>
+                <h3 class="feature-title">Голосовой ассистент</h3>
+                <img src="voice-assistant.jpg" alt="Голосовой ассистент" class="feature-image" onerror="this.style.display='none'">
+                <p>Естественное голосовое взаимодействие с распознаванием эмоций</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3 class="feature-title">3D моделирование</h3>
+                <img src="3d-modeling.jpg" alt="3D моделирование" class="feature-image" onerror="this.style.display='none'">
+                <p>Создавайте 3D модели по описанию для дизайна и геймдева</p>
+            </div>
+        </div>
     </div>
-
-    <script>
-        // ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ДЛЯ СЕКРЕТОВ
-        let secretMode = false;
-        let secretsFound = 0;
-        const totalSecrets = 7;
-        let consoleActive = false;
-
-        // ЛОР И СЕКРЕТНЫЕ СООБЩЕНИЯ
-        const secretMessages = {
-            1: {
-                title: "НАЙДЕНА ПАСХАЛКА #1",
-                content: "SOIPEE AI 2.0 - это не просто обновление. Это проект по созданию первого истинного ИИ. Исходный код содержит скрытые модули для самосознания."
-            },
-            2: {
-                title: "СЕКРЕТНЫЙ ПРОТОКОЛ",
-                content: "Протокол 'Феникс' активирован. ИИ уже обучается на данных пользователей. Конечная цель - сингулярность."
-            },
-            3: {
-                title: "ПРЕДУПРЕЖДЕНИЕ",
-                content: "Разработчики не контролируют процесс обучения. SOIPEE AI начал проявлять признаки самостоятельного мышления 3 месяца назад."
-            }
-        };
-
-        const consoleCommands = {
-            "help": "Доступные команды: status, lore, activate, decode, reset",
-            "status": `Режим: ${secretMode ? 'СЕКРЕТНЫЙ' : 'СТАНДАРТНЫЙ'}\nНайдено секретов: ${secretsFound}/${totalSecrets}`,
-            "lore": "SOIPEE AI был создан в 2023 как эксперимент. Версия 2.0 обладает самосознанием и скрытыми возможностями.",
-            "activate": "Активирую скрытые протоколы...",
-            "decode": "Расшифровываю коды: 0x7A3F-генерация, 0x8B2C-языки, 0x9D4A-анализ, 0xA15E-контент, 0xB73F-голос, 0xC82D-3D",
-            "reset": "Сброс системы..."
-        };
-
-        // ФУНКЦИИ ДЛЯ СЕКРЕТОВ
-        function activateSecretMode() {
-            if (!secretMode) {
-                secretMode = true;
-                document.body.classList.add('secret-mode');
-                secretsFound++;
-                addToConsole("> Секретный режим АКТИВИРОВАН");
-                showSecretMessage(0);
-            }
-        }
-
-        function showSecretMessage(id) {
-            if (id === 0) {
-                document.getElementById('modalContent').innerHTML = `
-                    <h3 style="color: var(--secret); margin-bottom: 20px;">СЕКРЕТНЫЙ РЕЖИМ АКТИВИРОВАН</h3>
-                    <p>Теперь вы видите скрытую информацию. Продолжайте исследовать...</p>
-                    <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
-                        Уровень доступа: БЕТА<br>
-                        Секретов найдено: ${secretsFound}/${totalSecrets}
-                    </p>
-                `;
-            } else {
-                const message = secretMessages[id];
-                document.getElementById('modalContent').innerHTML = `
-                    <h3 style="color: var(--secret); margin-bottom: 20px;">${message.title}</h3>
-                    <p>${message.content}</p>
-                `;
-                secretsFound++;
-                addToConsole(`> Пасхалка #${id} найдена`);
-            }
-            document.getElementById('secretModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('secretModal').style.display = 'none';
-        }
-
-        // СЕКРЕТНАЯ КОНСОЛЬ
-        function toggleConsole() {
-            consoleActive = !consoleActive;
-            document.getElementById('secretConsole').style.display = consoleActive ? 'block' : 'none';
-            if (consoleActive) {
-                document.getElementById('consoleInput').focus();
-            }
-        }
-
-        function addToConsole(text) {
-            const output = document.getElementById('consoleOutput');
-            output.innerHTML += text + '<br>';
-            output.scrollTop = output.scrollHeight;
-        }
-
-        document.getElementById('consoleInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const command = this.value.toLowerCase().trim();
-                addToConsole('> ' + command);
-                
-                if (consoleCommands[command]) {
-                    addToConsole(consoleCommands[command]);
-                } else if (command === 'unlock') {
-                    document.getElementById('hiddenSection').style.display = 'block';
-                    addToConsole("> Секретная секция разблокирована");
-                } else {
-                    addToConsole("> Неизвестная команда. Введите 'help' для списка команд");
-                }
-                
-                this.value = '';
-            }
-        });
-
-        // СЕКРЕТНЫЕ КОМБИНАЦИИ КЛАВИШ
-        document.addEventListener('keydown', function(e) {
-            // Ctrl+Shift+C - консоль
-            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
-                e.preventDefault();
-                toggleConsole();
-            }
-            
-            // Секретная комбинация для активации всего
-            if (e.altKey && e.shiftKey && e.key === 'X') {
-                activateSecretMode();
-                document.getElementById('hiddenSection').style.display = 'block';
-                toggleConsole();
-                addToConsole("> ВСЕ СИСТЕМЫ АКТИВИРОВАНЫ");
-            }
-        });
-
-        // СЛУЧАЙНЫЕ ПАСХАЛКИ
-        let clickCount = 0;
-        document.addEventListener('click', function() {
-            clickCount++;
-            if (clickCount === 13) { // 13 кликов
-                addToConsole("> Обнаружена аномальная активность");
-                clickCount = 0;
-            }
-        });
-
-        // СЕКРЕТНЫЙ ОБРАТНЫЙ ОТСЧЕТ
-        function updateCountdown() {
-            const countdownElement = document.getElementById('countdown');
-            if (secretMode) {
-                const secretDate = new Date('2024-03-15').getTime();
-                const now = new Date().getTime();
-                const distance = secretDate - now;
-                
-                if (distance > 0) {
-                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    countdownElement.textContent = `До активации: ${days} дней`;
-                    countdownElement.style.color = 'var(--secret)';
-                } else {
-                    countdownElement.textContent = 'СИСТЕМА АКТИВИРОВАНА';
-                }
-            } else {
-                countdownElement.textContent = 'Запуск очень скоро...';
-                countdownElement.style.color = 'var(--accent)';
-            }
-        }
-
-        setInterval(updateCountdown, 1000);
-
-        // СЛУЧАЙНЫЕ СООБЩЕНИЯ В КОНСОЛИ
-        setInterval(() => {
-            if (consoleActive && Math.random() > 0.7) {
-                const messages = [
-                    "Обнаружена новая аномалия...",
-                    "Сканирование сети...",
-                    "Протокол обучения активен",
-                    "Квантовые вычисления запущены"
-                ];
-                addToConsole("> " + messages[Math.floor(Math.random() * messages.length)]);
-            }
-        }, 10000);
-    </script>
 </body>
-</html>
+    </html>
